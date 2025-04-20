@@ -1,48 +1,60 @@
-import { motion } from "framer-motion";
-import { Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
-const containerVariant = {
-	initial: { opacity: 0, y: 20 },
-	animate: { opacity: 1, y: 0 },
-	exit: { opacity: 0, y: -20 },
-	hover: { scale: 1.02 },
-	tap: { scale: 0.98 }
-};
+import HackathonsList from "./components/HackathonsList.tsx";
+
+const categories = [
+	{ label: "Геймдев", icon: '/PS Controller.svg'},
+	{ label: "Финтех", icon: '/Total Sales.svg' },
+	{ label: "ИИ", icon: '/Artificial Intelligence.svg' },
+	{ label: "Разработка", icon: '/Code.svg' },
+	{ label: "Большие данные", icon: '/Line Chart.svg' }
+];
 
 function MainPage() {
 	return (
-		<motion.div
-			variants={containerVariant}
-			initial="initial"
-			animate="animate"
-			exit="exit"
-			whileHover="hover"
-			whileTap="tap"
-			transition={{ duration: 0.5 }}
-			style={{
-				padding: "40px",
-				maxWidth: "600px",
-				margin: "0 auto",
-				background: "#f9f9f9",
-				borderRadius: "12px",
-				boxShadow: "0 8px 24px rgba(0,0,0,0.1)",
-				textAlign: "center"
-			}}
-		>
-			<h1 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '20px' }}>
-				Добро пожаловать на HackEvents
-			</h1>
-			<p style={{ marginBottom: '24px' }}>
-				Следи за ближайшими хакатонами, находи команды и делись своими проектами!
-			</p>
+		<Box className='flex flex-col'>
+			<Typography
+				className='pb-[20px]'
+				fontWeight='bold'
+				variant='h5'>
+				🔥 Ближайшее мероприятие
+			</Typography>
 
-			<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-				<Button variant="contained" color="primary" href="/titlePage" component="a">
-					Перейти к Title Page
-				</Button>
-			</motion.div>
-		</motion.div>
+			<HackathonsList />
+
+			<Typography
+				className='pt-[40px] pb-[20px]'
+				fontWeight='bold'
+				variant='h5'>
+				Темы хакатонов
+			</Typography>
+			<Box className='flex justify-between'>
+				{categories.map((item, i) => (
+					<Box
+						key={i}
+						className=' flex flex-col items-center bg-[#308C78] border border-[#000000] h-[150px] w-[200px]'>
+						<Typography
+							className='bg-transparent text-[#FFFFFF] pt-[30px]'
+							variant='body1'>
+							{item.label}
+						</Typography>
+						<img
+							className='bg-transparent'
+							src={item.icon} />
+					</Box>
+				))}
+			</Box>
+
+
+				<Typography mb={2}>Сейчас уже участвует свыше 145 команд 🏆</Typography>
+				<Typography mb={2}>
+					Скорее принимай участие и выигрывай призы, лучшие команды смогут получить оффер от наших партнёров
+				</Typography>
+				<Typography mb={2}>Ознакомься со списком предстоящих хакатонов и принимай участие!</Typography>
+
+				{/*<Button variant="contained" color="success">К мероприятиям!</Button>*/}
+		</Box>
 	);
 }
 
-export default MainPage;
+export default MainPage
