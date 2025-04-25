@@ -1,12 +1,18 @@
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { Box, Typography } from '@mui/material'
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from 'framer-motion'
+import { useState } from 'react'
 
-import MainPage from "./MainPage";
+import MainPage from './pages/MainPage.tsx'
+import EventsPage from './pages/EventsPage.tsx'
+import useHandleClick from './functions/useHandleClick.tsx'
+import DetailPage from './pages/DetailsPage.tsx'
+import InfoPage from './pages/InfoPage.tsx'
 
 function Layout() {
-    const navigate = useNavigate()
+    const [dynamic, setDynamic] = useState(false)
     const location = useLocation()
+    const handleClick = useHandleClick()
 
     const navItems = [
         { label: 'Главная', path: '/' },
@@ -21,23 +27,27 @@ function Layout() {
         { img: '/Component 4.svg', text: 'Прими участие' },
     ]
 
-    const handleClick = (path: string) => {
-        if (location.pathname !== path) {
-            navigate(path)
-        }
-    }
-
     return (
         <Box className='flex'>
             <Box className='flex flex-col w-[18%] p-[40px] bg-[#E4CEBC] min-h-[100vh] gap-[20px]'>
                 {navItems.map((item) => (
-                    <Typography
-                        variant='h5'
-                        className='cursor-pointer no-underline bg-transparent'
+                    <motion.div
                         key={item.path}
-                        onClick={() => handleClick(item.path)}>
-                        {item.label}
-                    </Typography>
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ duration: 0.3 }}
+                        className='bg-transparent'>
+                        <Typography
+                            variant='h5'
+                            className='cursor-pointer no-underline bg-transparent'
+                            key={item.path}
+                            onClick={() => handleClick(item.path)}>
+                            {item.label}
+                        </Typography>
+                    </motion.div>
                 ))}
                 <Box className='flex flex-col pt-[25vh] bg-transparent'>
                     <Typography
@@ -54,6 +64,7 @@ function Layout() {
                                 src={step.img}/>
                             <Typography
                                 className='bg-transparent'
+                                component='span'
                                 variant='body1'>
                                 {step.text}
                             </Typography>
@@ -63,15 +74,18 @@ function Layout() {
                 <Box className='flex flex-col bg-transparent pt-[10vh]'>
                     <Typography
                         className='pb-[20px] bg-transparent'
+                        component='span'
                         variant='body1'>
                         Все права защищены, 2025
                     </Typography>
                     <Typography
-                        className='bg-transparent'
+                        className='bg-transparent flex flex-col'
+                        component='span'
                         variant='body1'>
                         Связь с нами:
                         <Typography
                             className='bg-transparent pt-[10px]'
+                            component='span'
                             variant='body1'>
                             example@gmail.com <br />
                             +7 999 888 77 66
@@ -82,12 +96,14 @@ function Layout() {
 
             <Box className='flex w-[82%] p-[30px]'>
                 <Box className='flex-1 flex-col border-2 border-[#308C78] p-[40px]'>
-                    <Typography
+                    {!dynamic && (
+                        <Typography
                         className='flex justify-between'
                         variant='h4'>
                         Твоя идея — против времени. Проверь,<br /> на что ты способен
-                        <img src='/image 8.svg'></img>
-                    </Typography>
+                        <img src='/image%208.svg'></img>
+                        </Typography>
+                    )}
                     <AnimatePresence mode='wait'>
                         <motion.div
                             initial={{ opacity: 0, scale: 0 }}
@@ -113,7 +129,7 @@ function Layout() {
                                             animate={{ opacity: 1, scale: 1 }}
                                             exit={{ opacity: 0, scale: 0 }}
                                             transition={{ duration: 0.3 }}>
-
+                                            <InfoPage setDynamic={setDynamic}/>
                                         </motion.div>} />
                                 <Route
                                     path='/hackathons'
@@ -123,7 +139,17 @@ function Layout() {
                                             animate={{ opacity: 1, scale: 1 }}
                                             exit={{ opacity: 0, scale: 0 }}
                                             transition={{ duration: 0.3 }}>
-
+                                            <EventsPage />
+                                        </motion.div>} />
+                                <Route
+                                    path='/:title'
+                                    element={
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            exit={{ opacity: 0, scale: 0 }}
+                                            transition={{ duration: 0.3 }}>
+                                            <DetailPage setDynamic={setDynamic} />
                                         </motion.div>} />
                             </Routes>
                         </motion.div>

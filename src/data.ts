@@ -1,7 +1,110 @@
 const data = [
-	{ title: "concert", content: "Супер концерт с живой музыкой" },
-	{ title: "expo", content: "Выставка современного искусства" },
-	{ title: "workshop", content: "Образовательный воркшоп для всех" },
+	{
+		slug: 'climatetech',
+		title: 'ClimateTech / Экотехнологии',
+		timePlace: '12-14 мая | Москва, Санкт-Петербург, Волгоград',
+		description: 'Присоединяйтесь к нам на хакатоне, посвященном экотехнологиям! Разрабатывайте инновационные решения для борьбы с изменением климата и обеспечения устойчивого будущего.',
+		logo: '/cat1.jpg',
+		participants: 'Сейчас уже участвует свыше 145 команд',
+		topic: [
+			{ title: 'ИИ', image: '/Artificial Intelligence2.svg' },
+			{ title: 'Финтех', image: '/Global Finance.svg' },
+			{ title: 'Экология', image: '/Hand Planting.svg' },
+		],
+	},
+	{
+		slug: 'aichallenge',
+		title: 'AI Challenge / Искусственный интеллект',
+		timePlace: '20–22 мая | Казань, Новосибирск',
+		description: 'Исследуйте возможности современных ИИ-систем и создавайте продукты, способные изменить будущее. Хакатон для тех, кто мыслит алгоритмами.',
+		logo: '/cat2.jpg',
+		participants: 'Уже зарегистрировано более 120 команд',
+		topic: [
+			{ title: 'Машинное обучение', image: 'Machine Learning.svg' },
+			{ title: 'Обработка данных', image: '/Line Chart2.svg' },
+			{ title: 'Нейросети', image: '/Artificial Intelligence2.svg' },
+			{ title: 'ИИ в медицине', image: '/Catheter.svg' },
+		],
+	},
+	{
+		slug: 'fintechfuture',
+		title: 'FinTech Future / Финансовые технологии',
+		timePlace: '5–7 июня | Москва, Екатеринбург',
+		description: 'Разработайте прорывные решения для цифрового банкинга, криптовалют и автоматизации финансовых процессов.',
+		logo: '/cat3.jpg',
+		participants: 'Более 100 команд в борьбе за будущее финансов',
+		topic: [
+			{ title: 'Криптовалюты', image: '/Cryptocurrency.svg' },
+			{ title: 'Блокчейн', image: '/Blockchain.svg' },
+			{ title: 'Платёжные системы', image: '/Merchant Account.svg' },
+		],
+	},
+	{
+		slug: 'gamedevjam',
+		title: 'GameDev Jam / Геймдев и дизайн',
+		timePlace: '10–12 июня | Санкт-Петербург, Пермь',
+		description: 'Создайте уникальную игру за 48 часов! Идеи, код, арт и звук — покажите всё, на что способны.',
+		logo: '/cat4.jpg',
+		participants: 'Уже более 180 инди-команд и студий',
+		topic: [
+			{ title: 'Игровой дизайн', image: '/PS Controller2.svg' },
+			{ title: 'Unity', image: '/Unity Symbol.svg' },
+			{ title: '2D/3D графика', image: '/Portraits.svg' },
+			{ title: 'Геймплей-прототипы', image: '/Prototype.svg' },
+		],
+	},
+	{
+		slug: 'bigdataanalytics',
+		title: 'Big Data & Analytics / Большие данные',
+		timePlace: '15–17 июня | Новосибирск, Самара',
+		description: 'Погрузитесь в мир аналитики и предиктивного моделирования. Решайте задачи на стыке науки и бизнеса.',
+		logo: '/cat5.jpg',
+		participants: 'Зарегистрировано 95 команд',
+		topic: [
+			{ title: 'Аналитика', image: '/Analytics.svg' },
+			{ title: 'ETL-пайплайны', image: '/Planned Path.svg' },
+			{ title: 'Data Science', image: '/Line Chart2.svg' },
+		],
+	},
+	{
+		slug: 'cybersechack',
+		title: 'CyberSec Hack / Кибербезопасность',
+		timePlace: '21–23 июня | Москва, Нижний Новгород',
+		description: 'Тестируйте системы на уязвимости, создавайте защитные решения и прокачивайте навыки кибербезопасности.',
+		logo: '/cat6.jpg',
+		participants: 'Около 110 команд зарегистрировано',
+		topic: [
+			{ title: 'Этичный хакинг', image: '/Hacking.svg' },
+			{ title: 'Защита данных', image: '/Data Protection.svg' },
+			{ title: 'Сетевые атаки', image: '/Network Gateway.svg' },
+		],
+	},
+	{
+		slug: 'healthtech',
+		title: 'HealthTech / Медицина и технологии',
+		timePlace: '28–30 июня | Казань, Томск',
+		description: 'Объедините медицину и технологии: от трекинга здоровья до решений на базе ИИ для диагностики.',
+		logo: '/cat7.jpg',
+		participants: 'Свыше 130 команд в сфере медицины и ИТ',
+		topic: [
+			{ title: 'Телемедицина', image: '/Catheter.svg' },
+			{ title: 'Wearable технологии', image: '/Wearable Technology.svg' },
+			{ title: 'ИИ в здравоохранении', image: '/Artificial Intelligence2.svg' },
+		],
+	},
+	{
+		slug: 'spacehack',
+		title: 'Space Hack / Космические технологии',
+		timePlace: '3–5 июля | Байконур, Москва',
+		description: 'Создавайте технологии будущего: от спутниковых систем до симуляторов межзвёздных миссий.',
+		logo: '/cat8.jpg',
+		participants: 'Более 90 команд инженеров и стартапов',
+		topic: [
+			{ title: 'Космическая навигация', image: '/Navigation.svg' },
+			{ title: 'Аэрокосмические технологии', image: '/Planet.svg' },
+			{ title: 'Спутники и датчики', image: '/Satellite.svg' },
+		],
+	}
 ];
 
-export default data;
+export default data
